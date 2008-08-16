@@ -88,6 +88,8 @@ Tabs.Tab = Class.create({
     },
 
     setupNavigation: function() {
+        if (!this.parent.options.useNavigation) return;
+        
         var ulElement = new Element("ul", { "class": this.parent.options.navigationClass });
 
         if (!this.isFirst()) {
@@ -142,7 +144,11 @@ Tabs.Menu = Class.create({
        if (this.tabs.length == 0) return;
        
        this.tabs.each(function(tab) {
-           if (!tab.isFirst()) tab.content.hide();
+           if (!tab.isFirst()) {
+               tab.deactivate();
+           } else {
+               tab.activate();
+           }
            
            tab.setupNavigation();
        }.bind(this));
@@ -155,7 +161,7 @@ Tabs.DefaultOptions = {
     tabTagName: "li",               // the tag name of the element to apply active/hover classes to
     activeClass: "active",          // active tab class
     hoverClass: "hover",            // hover over tab class
-    useNavigation: true,            // inject next/prev buttons or not
+    useNavigation: false,           // inject next/prev buttons or not
     navigationClass: "prevnext",    // class name of the next/prev buttons holder
     previousClass: "prev",          // previous button class
     nextClass: "next",              // next button class
