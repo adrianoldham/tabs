@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>index</title>
+    <script type="text/javascript" charset="utf-8" src="../lib/prototype.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../lib/scriptaculous.js?load=effects"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/tabs.js"></script>
+
+	<style type="text/css" media="screen">
+		.active {
+			font-weight: bold;
+		}
+		
+		.hover {
+			font-style: italic;
+		}
+	</style>
+	
+</head>
+
+<body>
+	<ul>
+		<li><a href="#what">What is DOMtab?</a></li>
+		<li><a href="#how">How to use DOMtab</a></li>
+		<li><a href="#pr">Previous and next links</a></li>
+
+		<li><a href="#style">How to style DOMtab</a></li>
+		<li><a href="#dl">Download</a></li>
+	</ul>
+	<div id="what">
+		What is DOMtab?
+	</div>
+	<div id="how">
+		How to use DOMtab
+	</div>
+	<div id="pr">
+		Previous and next links
+	</div>
+	<div id="style">
+		How to style DOMtab
+	</div>
+	<div id="dl">
+		Download
+	</div>
+	
+	<ul>
+		<li><a href="#what2">What is DOMtab?</a></li>
+		<li><a href="#how2">How to use DOMtab</a></li>
+		<li><a href="#pr2">Previous and next links</a></li>
+
+		<li><a href="#style2">How to style DOMtab</a></li>
+		<li><a href="#dl2">Download</a></li>
+	</ul>
+	<div id="what2">
+		What is DOMtab?
+	</div>
+	<div id="how2">
+		How to use DOMtab
+	</div>
+	<div id="pr2">
+		Previous and next links
+	</div>
+	<div id="style2">
+		How to style DOMtab
+	</div>
+	<div id="dl2">
+		Download
+	</div>
+	
+    <script type="text/javascript" charset="utf-8">
+        function runTest() {
+            var tabs = new Tabs("ul li a");
+        }
+
+        Event.observe(window, "load", runTest);
+    </script>
+</body>
+</html>
