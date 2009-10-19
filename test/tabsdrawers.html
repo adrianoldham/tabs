@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>index</title>
+    <script type="text/javascript" charset="utf-8" src="../lib/prototype.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../lib/scriptaculous.js?load=effects"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/tabs.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/drawers.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/tabdrawers.js"></script>
+
+	<style type="text/css" media="screen">
+		.active {
+			font-weight: bold;
+		}
+		
+		.hover {
+			font-style: italic;
+		}
+
+        body {
+            font-family: arial;
+            font-size: 12px;
+        }
+        
+        a {
+            font-size: 12px;
+        }
+    
+        .drawer_container {
+            width: 700px;
+            border: 1px solid black;
+            margin-bottom: 10px;
+            position: relative;
+        }
+    
+        .drawer_trigger {
+            display: block;
+            height: 30px;
+            width: 680px;
+            background-color: #aaa;
+            padding: 0 10px 0 10px;
+            line-height: 30px;
+            color: #fff;
+            font-weight: normal;
+            text-decoration: none;
+            outline: none;
+            font-size: 14px;
+            color: #000;
+            border-bottom: 1px solid #999;
+            cursor: pointer;
+            margin: 0 0 0 0;
+        }
+        
+        .active .drawer_trigger, .drawer_trigger_active .drawer_trigger {
+            background-color: #eee;
+            color: #000;
+            border-bottom-style: dashed;
+        }
+        
+        .hover .drawer_trigger, .drawer_trigger_hover .drawer_trigger {
+            background-color: #ddd;
+        }
+        
+        .drawer_content {
+            background-color: #fff;
+            color: #444;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .drawer .drawer_content div {
+            position: absolute;
+            bottom: 0;
+        }
+        
+        .drawer_content h2 {
+            margin: 15px 0 5px 10px;
+            color: #09f;
+            font-size: 15px;
+        }
+        
+        .drawer_content p {
+            line-height: 150%;
+            padding: 0px 10px 0 10px;
+            font-size: 12px;
+        }
+        
+		.animating .drawer_trigger {
+			background-color: #444;
+			color: #fff;
+		}
+		
+		.tabs2 .active a {
+		    font-size: 1.1em;
+		}
+    </style>
+</head>
+
+<body>
+	<ul class="tabs1">
+		<li><a href="#what">What is DOMtab?</a></li>
+		<li><a href="#how">How to use DOMtab</a></li>
+		<li><a href="#pr">Previous and next links</a></li>
+
+		<li><a href="#style">How to style DOMtab</a></li>
+		<li><a href="#dl">Download</a></li>
+	</ul>
+	<div id="what">
+		What is DOMtab?
+	</div>
+	<div id="how">
+		How to use DOMtab
+	</div>
+	<div id="pr">
+		Previous and next links
+	</div>
+	<div id="style">
+		How to style DOMtab
+	</div>
+	<div id="dl">
+		Download
+	</div>
+	
+	<ul class="tabs1">
+		<li><a href="#what2">What is DOMtab?</a></li>
+		<li><a href="#how2">How to use DOMtab</a></li>
+		<li><a href="#pr2">Previous and next links</a></li>
+
+		<li><a href="#style2">How to style DOMtab</a></li>
+		<li><a href="#dl2">Download</a></li>
+	</ul>
+	<div id="what2">
+		What is DOMtab?
+	</div>
+	<div id="how2">
+		How to use DOMtab
+	</div>
+	<div id="pr2">
+		Previous and next links
+	</div>
+	<div id="style2">
+		How to style DOMtab
+	</div>
+	<div id="dl2">
+		Download
+	</div>
+	
+	<h2>TabsDrawers Test</h2>
+	
+    <div class="drawer_container">
+        <div class="drawer">
+            <ul class="tabs2">
+                <li class="active"><a href="#body_34">Tab 1: A69.00.V6</a></li>
+                <li class=""><a href="#search_menu">Tab 2: Search</a></li>
+            </ul>
+            <div class="drawer_content">   
+                <div id="body_34">
+                    <h3>Description</h3>
+                    <p>Basin Set 5*</p>
+                    <h3>Specification</h3>
+                    <p>Chrome</p>
+                </div>
+                <div id="search_menu">
+                    Search
+                </div>
+            </div>
+            <h1 class="drawer_trigger" style="display: none">Trigger</h1>
+        </div>
+    </div>
+	
+    <script type="text/javascript" charset="utf-8">
+        function runTest() {
+            var tabs1 = new Tabs("ul.tabs1 li a");
+            var tabs2 = new Tabs("ul.tabs2 li a");
+            
+        	var drawers = new Drawers('.drawer', {
+                id: "drawers",
+                duration: 0.15,
+                drawerHeight: 228,
+                anchorTriggersSelector: '.drawer ul.tabs li a'
+            });
+
+            // Takes in a collection of Tabs and Drawers, so it's not restricted to just one set of tabs/drawers
+            var tabDrawers = new TabDrawers([ tabs1, tabs2 ], [ drawers ]);
+        }
+
+        Event.observe(window, "load", runTest);
+    </script>
+</body>
+</html>
