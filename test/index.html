@@ -17,12 +17,21 @@
 		.hover {
 			font-style: italic;
 		}
+		
+		#what, #how, #pr, #style, #dl,
+		#what2, #how2, #pr2, #style2, #dl2 {
+		    width: 300px;
+		}
+		
+		.container {
+		    background-color: red;
+		}
 	</style>
 	
 </head>
 
 <body>
-	<ul>
+	<ul class="tabs1">
 		<li><a href="#what">What is DOMtab?</a></li>
 		<li><a href="#how">How to use DOMtab</a></li>
 		<li><a href="#pr">Previous and next links</a></li>
@@ -46,7 +55,7 @@
 		Download
 	</div>
 	
-	<ul>
+	<ul class="tabs2">
 		<li><a href="#what2">What is DOMtab?</a></li>
 		<li><a href="#how2">How to use DOMtab</a></li>
 		<li><a href="#pr2">Previous and next links</a></li>
@@ -58,7 +67,7 @@
 		What is DOMtab?
 	</div>
 	<div id="how2">
-		How to use DOMtab
+		How to use <br/> DOMtab
 	</div>
 	<div id="pr2">
 		Previous and next links
@@ -72,7 +81,8 @@
 	
     <script type="text/javascript" charset="utf-8">
         function runTest() {
-            var tabs = new Tabs("ul li a");
+            var tabs1 = new Tabs("ul.tabs1 li a");
+            var tabs2 = new Tabs("ul.tabs2 li a", { animation: Tabs.Animations.Slide });
         }
 
         Event.observe(window, "load", runTest);
