@@ -68,13 +68,15 @@ Tabs.Tab = Class.create({
         });
         
         this.parent.options.animation.activate.call(this);
+        this.element.classNames().add(this.parent.options.activeClass);
                 
         // Remember which tab is currently active
         this.menu.activeTab = this;
     },
     
     deactivate: function() {
-       this.parent.options.animation.deactivate.call(this);
+        this.parent.options.animation.deactivate.call(this);
+        this.element.classNames().remove(this.parent.options.activeClass);
     },
     
     setupAnchor: function() {
@@ -219,12 +221,10 @@ Tabs.Animations = {
         
         activate: function() {
             this.content.show();
-            this.element.classNames().add(this.parent.options.activeClass);
         },
         
         deactivate: function() {
             this.content.hide();
-            this.element.classNames().remove(this.parent.options.activeClass);
         }
     },
     Fade: {
