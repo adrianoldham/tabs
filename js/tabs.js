@@ -176,6 +176,9 @@ Tabs.Menu = Class.create({
                }
            }.bind(this));
            
+           if (isNaN(maxTabContentSize.width)) maxTabContentSize.width = 0;
+           if (isNaN(maxTabContentSize.height)) maxTabContentSize.height = 0;
+           
            // Set container to the size found
            this.container.setStyle({ 
                position: "relative",
@@ -197,15 +200,17 @@ Tabs.Menu = Class.create({
                this.parent.options.animation.setup.call(this, tab);
            }
            
-           if (!tab.isFirst()) {
-               tab.deactivate();
-           } else {
-               tab.activate();
-           }
-           
            tab.setupNavigation();
        }.bind(this));
-       
+
+       this.tabs.each(function(tab) {
+           if (!tab.isFirst()) {
+             tab.deactivate();
+           } else {
+             tab.activate();
+           }
+       });
+              
        // Now initialized
        this.initialized = true;
        
@@ -231,8 +236,8 @@ Tabs.Animations = {
         setup: function(tab) {
             tab.content.setStyle({
                 position: "absolute",
-                top: "0",
-                left: "0"
+                top: "0px",
+                left: "0px"
             });
         },
         
@@ -264,9 +269,13 @@ Tabs.Animations = {
             var containerWidth = this.container.offsetWidth;
             var tabPosition = tabIndex * containerWidth;
             
+            if (isNaN(tabPosition) || tabPosition < 0) {
+                tabPosition = 0;
+            }
+            
             tab.content.setStyle({
                 position: "absolute",
-                top: "0",
+                top: "0px",
                 left: tabPosition + "px"
             });
             
@@ -277,10 +286,11 @@ Tabs.Animations = {
         activate: function() {
             var effects = [];
             
-            this.menu.tabs.each(function(tab) {
+            for (var i = 0; i < this.menu.tabs.length; i++) {
+                var tab = this.menu.tabs[i];
                 var position = tab.tStartingPosition - this.tStartingPosition;
                 effects.push(new Effect.Move(tab.content, { x: position, y: 0, mode: 'absolute', sync: true } ));
-            }.bind(this));
+            }
             
             if (this.menu.latestEffect != null) {
                 this.menu.latestEffect.cancel();
