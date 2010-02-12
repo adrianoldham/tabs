@@ -203,13 +203,25 @@ Tabs.Menu = Class.create({
            tab.setupNavigation();
        }.bind(this));
 
+       var idToActivate = null;
+       if (window.location.hash.charAt(0) == '#') {
+           idToActivate = window.location.hash.substring(1);
+       }
+
        this.tabs.each(function(tab) {
-           if (!tab.isFirst()) {
-             tab.deactivate();
+           if (idToActivate !== null && tab.content.id == idToActivate) {
+               var duration = this.parent.options.animationOptions.duration;
+               this.parent.options.animationOptions.duration = 0;
+               tab.activate();
+               this.parent.options.animationOptions.duration = duration;
            } else {
-             tab.activate();
+               if (!tab.isFirst()) {
+                   tab.deactivate();
+               } else {
+                   tab.activate();
+               }   
            }
-       });
+       }.bind(this));
               
        // Now initialized
        this.initialized = true;
