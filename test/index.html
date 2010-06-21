@@ -82,7 +82,7 @@
     <script type="text/javascript" charset="utf-8">
         function runTest() {
             var tabs1 = new Tabs("ul.tabs1 li a");
-            var tabs2 = new Tabs("ul.tabs2 li a", { animation: Tabs.Animations.Slide });
+            var tabs2 = new Tabs("ul.tabs2 li a", { autoPlay: true, animation: Tabs.Animations.Slide });
         }
 
         Event.observe(window, "load", runTest);
