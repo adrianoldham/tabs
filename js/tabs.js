@@ -140,8 +140,9 @@ Tabs.Tab = Class.create({
 		this.stopAutoPlay();
 		
 		this.parent.autoPlayerTimer = setTimeout(function() {
-			if (this.nextTab()) {
-				this.nextTab().activate();				
+			var nextTab = this.menu.activeTab.nextTab();
+			if (nextTab) {
+				nextTab.activate();				
 			}
 		}.bind(this), this.parent.options.autoPlayDelay);
 	},
@@ -350,7 +351,45 @@ Tabs.Animations = {
         
         deactivate: function() {
         }
-    }
+    },
+	VerticalSlide: {
+        setup: function(tab) {
+            var tabIndex = this.tabs.index(tab);
+            var containerHeight = this.container.offsetHeight;
+            var tabPosition = tabIndex * containerHeight;
+            
+            if (isNaN(tabPosition) || tabPosition < 0) {
+                tabPosition = 0;
+            }
+            
+            tab.content.setStyle({
+                position: "absolute",
+                top: tabPosition + "px",
+                left: "0px"
+            });
+            
+            // Store starting position for use later
+            tab.tStartingPosition = tabPosition;
+        },
+        
+        activate: function() {
+            var effects = [];
+            
+            for (var i = 0; i < this.menu.tabs.length; i++) {
+                var tab = this.menu.tabs[i];
+                var position = tab.tStartingPosition - this.tStartingPosition;
+                effects.push(new Effect.Move(tab.content, { x: 0, y: position, mode: 'absolute', sync: true } ));
+            }
+            
+            if (this.menu.latestEffect != null) {
+                this.menu.latestEffect.cancel();
+            }
+            this.menu.latestEffect = new Effect.Parallel(effects, this.parent.options.animationOptions);
+        },
+        
+        deactivate: function() {
+        }
+	}
 };
 
 // Supported animations are:
