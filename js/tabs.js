@@ -223,7 +223,7 @@ Tabs.Menu = Class.create({
            // Set container to the size found
            this.container.setStyle({ 
                position: "relative",
-               overflow: "hidden",
+               overflow: this.parent.options.containerOverflow,
                width: maxTabContentSize.width + "px",
                height: maxTabContentSize.height + "px"
            });
@@ -403,6 +403,7 @@ Tabs.DefaultOptions = {
     animation: Tabs.Animations.None,        // How to animate, null for no animation, "fade" for fade in/out, "slide" for slide in/out
     animationOptions: { duration: 0.5 },    // Options for the animation
     containerClass: "container",            // Animation container class name    
+    containerOverflow: "hidden",            // Container overflow hidden/visible?
     
     tabTagName: "li",               // the tag name of the element to apply active/hover classes to
     activeClass: "active",          // active tab class
