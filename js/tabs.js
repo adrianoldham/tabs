@@ -137,6 +137,8 @@ Tabs.Tab = Class.create({
     },
 
 	startAutoPlay: function() {
+        if (!this.parent.options.autoPlay) return;
+
 		this.stopAutoPlay();
 		
 		this.parent.autoPlayerTimer = setTimeout(function() {
