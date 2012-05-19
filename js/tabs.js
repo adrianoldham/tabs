@@ -60,7 +60,7 @@ Tabs.Tab = Class.create({
         this.content = $(anchor.href.substring(anchor.href.lastIndexOf("#") + 1));
         
         this.setupAnchor();
-		this.setupAutoPlay();
+        this.setupAutoPlay();
     },
     
     activate: function() {
@@ -74,8 +74,8 @@ Tabs.Tab = Class.create({
         // Remember which tab is currently active
         this.menu.activeTab = this;
 
-		// Start auto play once activated
-		this.startAutoPlay();
+        // Start auto play once activated
+        this.startAutoPlay();
     },
     
     deactivate: function() {
@@ -136,51 +136,51 @@ Tabs.Tab = Class.create({
         this.content.appendChild(ulElement);
     },
 
-	startAutoPlay: function() {
+    startAutoPlay: function() {
         if (!this.parent.options.autoPlay) return;
 
-		this.stopAutoPlay();
-		
-		this.parent.autoPlayerTimer = setTimeout(function() {
-			var nextTab = this.menu.activeTab.nextTab();
-			if (nextTab) {
-				nextTab.activate();				
-			}
-		}.bind(this), this.parent.options.autoPlayDelay);
-	},
-	
-	stopAutoPlay: function() {
-		if (this.parent.autoPlayerTimer !== null && this.parent.autoPlayerTimer !== undefined) {
-			clearTimeout(this.parent.autoPlayerTimer);
-		}
-	},
+        this.stopAutoPlay();
+        
+        this.parent.autoPlayerTimer = setTimeout(function() {
+            var nextTab = this.menu.activeTab.nextTab();
+            if (nextTab) {
+                nextTab.activate();                
+            }
+        }.bind(this), this.parent.options.autoPlayDelay);
+    },
+    
+    stopAutoPlay: function() {
+        if (this.parent.autoPlayerTimer !== null && this.parent.autoPlayerTimer !== undefined) {
+            clearTimeout(this.parent.autoPlayerTimer);
+        }
+    },
 
-	setupAutoPlay: function() {
-		var resetAutoPlay = function() {
-			this.startAutoPlay();
-		}.bind(this);
-		
-		// If mouse move, then stop the auto play
-		this.content.observe('mousemove', resetAutoPlay);
-		this.element.observe('mousemove', resetAutoPlay);
-	},
+    setupAutoPlay: function() {
+        var resetAutoPlay = function() {
+            this.startAutoPlay();
+        }.bind(this);
+        
+        // If mouse move, then stop the auto play
+        this.content.observe('mousemove', resetAutoPlay);
+        this.element.observe('mousemove', resetAutoPlay);
+    },
     
     previousTab: function() {
         var index = this.menu.tabs.indexOf(this);
         if (index != 0) {
-			return this.menu.tabs[index - 1];
-		} else {
-			return this.menu.tabs[this.menu.tabs.length - 1];
-		}
+            return this.menu.tabs[index - 1];
+        } else {
+            return this.menu.tabs[this.menu.tabs.length - 1];
+        }
     },
     
     nextTab: function() {
         var index = this.menu.tabs.indexOf(this);
         if (index != this.menu.tabs.length - 1) {
-			return this.menu.tabs[index + 1];
-		} else {
-			return this.menu.tabs[0];
-		}
+            return this.menu.tabs[index + 1];
+        } else {
+            return this.menu.tabs[0];
+        }
     }
 });
 
@@ -367,7 +367,7 @@ Tabs.Animations = {
         deactivate: function() {
         }
     },
-	VerticalSlide: {
+    VerticalSlide: {
         setup: function(tab) {
             var tabIndex = this.tabs.index(tab);
             var containerHeight = this.container.offsetHeight;
@@ -404,7 +404,7 @@ Tabs.Animations = {
         
         deactivate: function() {
         }
-	}
+    }
 };
 
 // Supported animations are:
@@ -428,6 +428,6 @@ Tabs.DefaultOptions = {
     previousText: "Previous",       // text to display for previous button
     nextText: "Next",               // text to display for next button
 
-	autoPlay: false,				// Scrolls between the tabs using the animation specified
-	autoPlayDelay: 3000				// The delay between scrolls
+    autoPlay: false,                // Scrolls between the tabs using the animation specified
+    autoPlayDelay: 3000                // The delay between scrolls
 };
