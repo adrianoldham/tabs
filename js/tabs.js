@@ -202,7 +202,17 @@ Tabs.Menu = Class.create({
        
        // Setup animations container
        if (this.parent.options.animation != Tabs.Animations.None) {
-           this.container = new Element("div", { "class": this.parent.options.containerClass });
+           
+           // Find the first tab content panel
+           this.firstTabContent = this.tabs.first().content;
+           
+           // Use the existing container if available
+           this.container = this.firstTabContent.up('.' + this.parent.options.containerClass);
+           
+           // Create a new container if none exists
+           if (this.container == null) {
+               this.container = new Element("div", { "class": this.parent.options.containerClass });
+           }
            
            // Find height and width to set the container to
            // Should be the max width and max height of the tabs
@@ -228,7 +238,10 @@ Tabs.Menu = Class.create({
                height: maxTabContentSize.height + "px"
            });
            
-           this.tabs.first().content.insert({ before: this.container });       
+           // Insert the tab content panels if not already children of the container
+           if (this.container.up(this.firstTabContent) == null) {
+               this.firstTabContent.insert({ before: this.container });
+           }
        }
        
        var tabIndex = 0;
