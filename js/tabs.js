@@ -216,7 +216,7 @@ Tabs.Menu = Class.create({
 
             // Use the existing container if available
             this.container = this.firstTabContent.up('.' + this.parent.options.containerClass);
-            var containerExists = this.container != null ? true : false;
+            var containerExists = this.container != null;
 
             // Create a new container if none exists
             if (this.container == null) {
