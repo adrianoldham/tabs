@@ -208,6 +208,7 @@ Tabs.Menu = Class.create({
            
            // Use the existing container if available
            this.container = this.firstTabContent.up('.' + this.parent.options.containerClass);
+           var containerExists = this.container != null ? true : false;
            
            // Create a new container if none exists
            if (this.container == null) {
@@ -238,8 +239,8 @@ Tabs.Menu = Class.create({
                height: maxTabContentSize.height + "px"
            });
            
-           // Insert the tab content panels if not already children of the container
-           if (this.container.up(this.firstTabContent) == null) {
+           // Insert the new container before the first tab if it doesn't already exist
+           if (!containerExists) {
                this.firstTabContent.insert({ before: this.container });
            }
        }
@@ -248,7 +249,9 @@ Tabs.Menu = Class.create({
        this.tabs.each(function(tab) {
            // Add tab content into container if container exists
            if (this.container != null) {
-               this.container.insert(tab.content);
+               if (!containerExists) {
+                   this.container.insert(tab.content);
+               }
                
                // Call the animation setup function for the tab
                this.parent.options.animation.setup.call(this, tab);
