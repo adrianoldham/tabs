@@ -71,7 +71,7 @@ Tabs.Tab = Class.create({
         });
 
         this.parent.options.animation.activate.call(this);
-        this.element.classNames().add(this.parent.options.activeClass);
+        this.element.addClassName(this.parent.options.activeClass);
 
         // Remember which tab is currently active
         this.menu.activeTab = this;
@@ -82,7 +82,7 @@ Tabs.Tab = Class.create({
 
     deactivate: function() {
         this.parent.options.animation.deactivate.call(this);
-        this.element.classNames().remove(this.parent.options.activeClass);
+        this.element.removeClassName(this.parent.options.activeClass);
     },
 
     setupAnchor: function() {
@@ -92,11 +92,11 @@ Tabs.Tab = Class.create({
         }.bindAsEventListener(this));
 
         this.anchor.observe("mouseover", function() {
-            this.element.classNames().add(this.parent.options.hoverClass);
+            this.element.addClassName(this.parent.options.hoverClass);
         }.bind(this));
 
         this.anchor.observe("mouseout", function() {
-            this.element.classNames().remove(this.parent.options.hoverClass);
+            this.element.removeClassName(this.parent.options.hoverClass);
         }.bind(this));
     },
 
